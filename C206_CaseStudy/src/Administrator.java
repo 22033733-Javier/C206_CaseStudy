@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class Administrator {
 	
@@ -39,6 +40,23 @@ public class Administrator {
 		this.password = password;
 	}
 	
-	
+	public static boolean adminLogin(ArrayList <Administrator> adminList) {
+		boolean aLogin = false;
+		String username = Helper.readString("Enter username > ");
+		String password = Helper.readString("Enter password > ");
+		
+		for(int i = 0; i < adminList.size(); i++) {
+			if (adminList.get(i).getUsername().equals(username)) {
+				if (adminList.get(i).getPassword().equals(password)) {
+					aLogin = true;
+					System.out.println("Successful log in!");
+				}
+				else {
+					System.out.println("Error!");
+				}
+			}
+		}
+		return aLogin;
+	}
 }
  

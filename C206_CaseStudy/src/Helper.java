@@ -13,29 +13,15 @@ public class Helper {
 		return new java.util.Scanner(System.in).nextLine();
 	}
 
-	public static String readStringRegExEmail(String prompt, String pattern) {
+	public static String readStringRegEx(String prompt, String pattern) {
 		String input = readString(prompt);	
 		boolean matched = Pattern.matches(pattern, input);
 
 		while (!matched) {
-			System.out.println("Invalid email! Please enter a valid email!");
 			input = readString(prompt);
 			matched = Pattern.matches(pattern, input);
 		}
-		return input;
-
-	}
-	
-	public static String readStringRegExNumber(String prompt, String pattern) {
-		String input = readString(prompt);	
-		boolean matched = Pattern.matches(pattern, input);
-
-		while (!matched) {
-			System.out.println("Invalid phone number!");
-			input = readString(prompt);
-			matched = Pattern.matches(pattern, input);
-		}
-		return input;
+		return pattern;
 
 	}
 

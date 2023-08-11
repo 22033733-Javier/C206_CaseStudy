@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Bike {
 
     private static int nextBikeId = 1000; // To generate unique bike IDs
@@ -17,8 +19,8 @@ public class Bike {
         this.color = color;
         this.username = username;
     }
-
-    // Private method to generate a unique bike ID
+    
+	// Private method to generate a unique bike ID
     private static int generateBikeId() {
         return nextBikeId++;
     }
@@ -92,4 +94,47 @@ public class Bike {
     public String toString() {
         return "Bike ID: " + bikeId + ", Make: " + make + ", Model: " + model + ", Year: " + year + ", Colour: " + color;
     }
+    
+	
+	public static void addBike(String username, ArrayList<Bike> bikesList) {
+		Helper.line(73, "-");
+		System.out.println("------------------------------ Add My Bike ------------------------------");
+		Helper.line(73, "-");
+		System.out.println();
+		
+		for (int b = 0; b < bikesList.size(); b++) {
+			if (username.equals(bikesList.get(b).getUsername())) {
+				String make = Helper.readString("Enter bike make: ");
+		        String model = Helper.readString("Enter bike model: ");
+		        int year = Helper.readInt("Enter bike year: ");
+		        String color = Helper.readString("Enter bike color: ");
+		        
+		        bikesList.add(new Bike(bikesList.get(b).getUsername() ,make, model, year, color));
+		        System.out.println("*** Bike Successfully Added!!");
+		        break;
+			}
+		}
+	}
+	
+	
+	public static void deleteBike(ArrayList<Bike> bikesList) {
+		int bikeId = Helper.readInt("Enter the bike ID to delete: ");
+        boolean found = false;
+
+        for (Bike bike : bikesList) {
+            if (bike.getBikeId() == bikeId) {
+                bikesList.remove(bike);
+                System.out.println("Bike deleted successfully!");
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            System.out.println("Bike not found with the given ID!");
+        }
+
+	}
+	
+	
 }
